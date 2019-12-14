@@ -36,6 +36,5 @@ public class Garage implements Serializable {
 
     @Column(name = "phonenumber")
     private String adresTelephoneNumber;
-    ;
 
 }
