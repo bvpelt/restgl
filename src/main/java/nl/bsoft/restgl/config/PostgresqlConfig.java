@@ -31,7 +31,7 @@ import java.util.Properties;
         transactionManagerRef = "transactionManager"
 )
 
-public class PostgresqlConfig  extends DatabaseConfig {
+public class PostgresqlConfig extends DatabaseConfig {
 
     private PrometheusMeterRegistry prometheusMeterRegistry;
 

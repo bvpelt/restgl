@@ -3,7 +3,6 @@ package nl.bsoft.restgl.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,8 +17,6 @@ public class Vehicle implements Serializable {
 
     @Id
     @Column(name = "ID", nullable = false)
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RESTGL_01_SEQ")
-    //@SequenceGenerator(name = "RESTGL_01_SEQ", sequenceName = "CAR_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RESTGL_01_SEQ")
     @SequenceGenerator(name = "RESTGL_01_SEQ", sequenceName = "CAR_ID_SEQ", allocationSize = 1)
     private int id;
