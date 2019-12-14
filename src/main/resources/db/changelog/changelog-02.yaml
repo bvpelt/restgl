@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 200
+      author: bart
+      changes:
+        - createTable:
+            tableName: GARAGE
+            columns:
+              - column:
+                  name: ID
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(32)
+              - column:
+                  name: street
+                  type: varchar(32)
+              - column:
+                  name: streetnumber
+                  type: varchar(6)
+              - column:
+                  name: postcode
+                  type: varchar(6)
+              - column:
+                  name: city
+                  type: varchar(32)
+              - column:
+                  name: phonenumber
+                  type: varchar(12)
+        - createIndex:
+            clustered: true
+            columns:
+              - column:
+                  name: city
+            indexName: ix_city
+            tableName: GARAGE
+            unique: false
