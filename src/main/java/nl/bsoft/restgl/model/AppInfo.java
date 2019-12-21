@@ -3,7 +3,6 @@ package nl.bsoft.restgl.model;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.NamedAttributeNode;
 import java.io.Serializable;
 
 @Slf4j
@@ -13,6 +12,7 @@ public class AppInfo implements Serializable {
 
     private String name;
     private String version;
-
+    private Double result;
+    private Integer maxi;
 
 }

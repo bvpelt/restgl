@@ -24,6 +24,9 @@ import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
 
+
+import io.micrometer.core.instrument.binder.db.PostgreSQLDatabaseMetrics;
+
 @Slf4j
 @Configuration
 @EnableJpaRepositories(
@@ -51,6 +54,11 @@ public class PostgresqlConfig extends DatabaseConfig {
     public HikariDataSource dataSource() {
         log.info("datasourcepg config: {}", DataSourceProperties().initializeDataSourceBuilder().type(HikariDataSource.class).build().toString());
         return DataSourceProperties().initializeDataSourceBuilder().type(HikariDataSource.class).build();
+    }
+
+    @Bean
+    public PostgreSQLDatabaseMetrics dbMetrics(@Qualifier("dataSource") final HikariDataSource dataSource) {
+        return  new PostgreSQLDatabaseMetrics(dataSource.getDataSource(), "restgl");
     }
 
     @PostConstruct

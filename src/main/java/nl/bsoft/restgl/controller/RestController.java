@@ -1,5 +1,6 @@
 package nl.bsoft.restgl.controller;
 
+import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Timer;
 import io.micrometer.prometheus.PrometheusMeterRegistry;
@@ -49,7 +50,6 @@ public class RestController {
         return new ResponseEntity<AppInfo>(appInfo, HttpStatus.OK);
     }
 
-
     @GetMapping("/app-info-time")
     public ResponseEntity<AppInfo> getAppInfoTime() {
         Timer.Sample appInfoSample = Timer.start(this.prometheusRegistry);
@@ -58,17 +58,20 @@ public class RestController {
         appInfo.setName("MyCounterTest");
         appInfo.setVersion("1.0");
 
-        Random u = new Random();
-        u.setSeed(LocalDate.now().toEpochDay());
-
-        int maxi = u.nextInt(1000);
+        double maxid = 1000 * Math.random();
+        int maxi = (int) maxid;
+        appInfo.setMaxi(maxi);
+        double result = 0d;
         for (int i = 0; i < maxi; i++) {
-            int maxj = u.nextInt(1000);
+            double maxjd = 1000 * Math.random();
+            int maxj = (int)maxjd;
             for (int j = 0; j < maxj; j++) {
                 double k = i*j/((i+j) + 1);
+                result += k;
             }
         }
 
+        appInfo.setResult(result);
         appInfoSample.stop(this.appInfoTimer);
 
         return new ResponseEntity<AppInfo>(appInfo, HttpStatus.OK);

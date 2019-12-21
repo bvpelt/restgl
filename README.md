@@ -213,6 +213,13 @@ Date: Sat, 14 Dec 2019 17:59:11 GMT
   }
 }
 ```
+
+# References
 ## Postgresql Monitoring
 - see https://www.postgresql.eu/events/pgconfeu2018/schedule/session/2166/
 - see https://github.com/wrouesnel/postgres_exporter
+
+## Metrics
+- see https://docs.spring.io/spring-metrics/docs/current/public/prometheus
+- see https://www.callicoder.com/spring-boot-actuator-metrics-monitoring-dashboard-prometheus-grafana/
+- see https://blog.autsoft.hu/defining-custom-metrics-in-a-spring-boot-application-using-micrometer/
