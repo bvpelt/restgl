@@ -1,6 +1,5 @@
 package nl.bsoft.restgl.controller;
 
-import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Timer;
 import io.micrometer.prometheus.PrometheusMeterRegistry;
@@ -10,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.util.Random;
-
-@org.springframework.web.bind.annotation.RestController
-public class RestController {
+@RestController
+public class MyController {
 
     private CarRepo carRepo;
     private PrometheusMeterRegistry prometheusRegistry;
@@ -23,8 +20,8 @@ public class RestController {
     private Timer appInfoTimer;
 
     @Autowired
-    public RestController(final CarRepo carRepo,
-                          final PrometheusMeterRegistry prometheusRegistry) {
+    public MyController(final CarRepo carRepo,
+                        final PrometheusMeterRegistry prometheusRegistry) {
         this.carRepo = carRepo;
         this.prometheusRegistry = prometheusRegistry;
         this.appInfoCounter = Counter.builder("appinfo")
@@ -64,9 +61,9 @@ public class RestController {
         double result = 0d;
         for (int i = 0; i < maxi; i++) {
             double maxjd = 1000 * Math.random();
-            int maxj = (int)maxjd;
+            int maxj = (int) maxjd;
             for (int j = 0; j < maxj; j++) {
-                double k = i*j/((i+j) + 1);
+                double k = i * j / ((i + j) + 1);
                 result += k;
             }
         }

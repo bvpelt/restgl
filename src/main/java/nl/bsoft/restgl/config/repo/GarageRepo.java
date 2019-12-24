@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@EntityScan("nl.bsoft.restgl.model")
 @Repository
 public interface GarageRepo extends JpaRepository<Garage, Integer> {
     List<Garage> findByAdresCity(@Param("city") String city);

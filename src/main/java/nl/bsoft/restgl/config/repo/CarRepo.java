@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@EntityScan("nl.bsoft.restgl.model")
 @Repository
 public interface CarRepo extends JpaRepository<Vehicle, Integer> {
     List<Vehicle> findByModelCode(@Param("modelCode") String modelCode);
