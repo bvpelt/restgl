@@ -49,28 +49,25 @@ public class MyController {
 
     @GetMapping("/app-info-time")
     public ResponseEntity<AppInfo> getAppInfoTime() {
-        Timer.Sample appInfoSample = Timer.start(this.prometheusRegistry);
-
         AppInfo appInfo = new AppInfo();
-        appInfo.setName("MyCounterTest");
-        appInfo.setVersion("1.0");
+        appInfoTimer.record(() -> {
+            appInfo.setName("MyCounterTest");
+            appInfo.setVersion("1.0");
 
-        double maxid = 1000 * Math.random();
-        int maxi = (int) maxid;
-        appInfo.setMaxi(maxi);
-        double result = 0d;
-        for (int i = 0; i < maxi; i++) {
-            double maxjd = 1000 * Math.random();
-            int maxj = (int) maxjd;
-            for (int j = 0; j < maxj; j++) {
-                double k = i * j / ((i + j) + 1);
-                result += k;
+            double maxid = 1000 * Math.random();
+            int maxi = (int) maxid;
+            appInfo.setMaxi(maxi);
+            double result = 0d;
+            for (int i = 0; i < maxi; i++) {
+                double maxjd = 1000 * Math.random();
+                int maxj = (int) maxjd;
+                for (int j = 0; j < maxj; j++) {
+                    double k = i * j / ((i + j) + 1);
+                    result += k;
+                }
             }
-        }
-
-        appInfo.setResult(result);
-        appInfoSample.stop(this.appInfoTimer);
-
+            appInfo.setResult(result);
+        });
         return new ResponseEntity<AppInfo>(appInfo, HttpStatus.OK);
     }
 
